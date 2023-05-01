@@ -3,6 +3,6 @@ export interface Boisson{
   name:string;
   description:string;
   drinkSize:number;
-  creationDate:Date;
+  creationDate:string;
   bouteille:number;
 }

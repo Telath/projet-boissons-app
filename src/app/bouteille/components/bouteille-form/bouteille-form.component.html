@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{title}}</h2>
+
+<form [formGroup]="bouteilleForm" (ngSubmit)="onSubmit()">
+    <div class="form">
+        <mat-form-field appearance="outline">
+            <mat-label>identifiant</mat-label>
+            <input matInput formControlName="id" readonly />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>description</mat-label>
+            <input matInput formControlName="description" />
+        </mat-form-field>
+
+        <!-- <mat-form-field appearance="outline">
+            <mat-label>Classe</mat-label>
+            <mat-select formControlName="class">
+                <mat-option *ngFor="let bouteille of bouteilles" [value]="bouteille">
+                    {{bouteille}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field> -->
+
+        <mat-form-field appearance="outline">
+            <mat-label>drinkSize</mat-label>
+            <input matInput formControlName="drinkSize" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>creationDate</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="creationDate">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+
+    <mat-dialog-actions align="end">
+        <button mat-button type="button" mat-dialog-close>Annuler</button>
+        <button mat-raised-button type="submit" cdkFocusInitial color="warn"
+            [disabled]="!bouteilleForm.valid || !bouteilleForm.dirty">{{submitBtnName}}</button>
+    </mat-dialog-actions>
+</form>

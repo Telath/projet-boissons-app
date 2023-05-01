@@ -3,31 +3,26 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { GenericPopupComponent } from 'src/app/shared/components/generic-popup/generic-popup.component';
-import { Boisson } from '../../models/boisson';
-import { BoissonService } from '../../services/boisson.service';
+import { Bouteille } from '../../models/bouteille';
+import { BouteilleService } from '../../services/bouteille.service';
 import { Router } from '@angular/router';
-import { BoissonFormComponent } from '../../components/boisson-form/boisson-form.component';
+import { BouteilleFormComponent } from '../../components/bouteille-form/bouteille-form.component';
 
 @Component({
-  selector: 'app-boisson-list',
-  templateUrl: './boisson-list.component.html',
-  styleUrls: ['./boisson-list.component.scss']
+  selector: 'app-bouteille-list',
+  templateUrl: './bouteille-list.component.html',
+  styleUrls: ['./bouteille-list.component.scss']
 })
 
-export class BoissonListComponent implements OnInit, OnDestroy {
+export class BouteilleListComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
-	boissons$: Observable<Boisson[]>;
+	bouteilles$: Observable<Bouteille[]>;
   displayedColumns: string[] = [
-    'name',
-    'description',
-    'bouteille',
-    'drinkSize',
-    'update',
-    'delete',
+    'name'
   ];
 
-	constructor(private boissonService: BoissonService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router){
+	constructor(private bouteilleService: BouteilleService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router){
 
 	 }
 
@@ -42,16 +37,16 @@ export class BoissonListComponent implements OnInit, OnDestroy {
   }
 
   fetchData() {
-    this.boissons$ = this.boissonService.get();
+    this.bouteilles$ = this.bouteilleService.get();
   }
 
-  openBoissonForm(boisson?: Boisson) {
-    const dialogRef = this.dialog.open(BoissonFormComponent, {
+  openBouteilleForm(bouteille?: Bouteille) {
+    const dialogRef = this.dialog.open(BouteilleFormComponent, {
       height: '85%',
       width: '60%',
       data: {
-        isCreateForm: boisson ? false : true,
-        boisson: boisson ? boisson : undefined
+        isCreateForm: bouteille ? false : true,
+        bouteille: bouteille ? bouteille : undefined
       }
     });
 
@@ -68,7 +63,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
     const ref = this.dialog.open(GenericPopupComponent, {
       data: {
         title: 'Confirmation de suppression',
-        message: 'êtes-vous sûr de vouloir supprimer cette boisson ?',
+        message: 'êtes-vous sûr de vouloir supprimer cette bouteille ?',
         typeMessage: 'none',
         yesButtonVisible: true,
         noButtonVisible: true,
@@ -83,7 +78,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
         if (result) {
-          this.boissonService.delete(id)
+          this.bouteilleService.delete(id)
             .pipe(takeUntil(this.destroy$))
             .subscribe(result => {
               this._snackBar.open(result, '', {
@@ -97,7 +92,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
 
   }
 
-  showBoissonDetails(boissonId: number){
-    this.router.navigate(['/boissons/'+ boissonId])
+  showBouteilleDetails(bouteilleId: number){
+    this.router.navigate(['/bouteilles/'+ bouteilleId])
   }
  }
