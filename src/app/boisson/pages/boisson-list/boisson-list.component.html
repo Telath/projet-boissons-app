@@ -29,24 +29,24 @@
   </ng-container>
 
   <!-- update Column -->
-  <!-- <ng-container matColumnDef="update">
-    <th mat-header-cell *matHeaderCellDef> update </th>
-    <td mat-cell *matCellDef="let element" (click)="openStudentForm(element); $event.stopPropagation();"> <mat-icon class="clickable">edit</mat-icon> </td>
-  </ng-container> -->
+  <ng-container matColumnDef="update">
+    <th mat-header-cell *matHeaderCellDef> Update </th>
+    <td mat-cell *matCellDef="let element" (click)="openBoissonForm(element)"><mat-icon>edit</mat-icon></td>
+</ng-container>
 
-  <!-- delete Column -->
-  <!-- <ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef> delete </th>
-    <td mat-cell *matCellDef="let element" (click)="delete(element.id); $event.stopPropagation();"> <mat-icon class="clickable">delete</mat-icon> </td>
-  </ng-container> -->
+<!-- delete Column -->
+<ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef> Supprimer </th>
+    <td mat-cell *matCellDef="let element" (click)="delete(element.id)"><mat-icon>delete</mat-icon></td>
+</ng-container>
 
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="showStudentDetails(row.id)"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="showBoissonDetails(row.id)"></tr>
 </table>
 
 </div>
 <div class="btn-holder">
-  <button mat-fab color="warn" (click)="openStudentForm()"><mat-icon>add</mat-icon></button>
+  <button mat-fab color="warn" (click)="openBoissonForm()"><mat-icon>add</mat-icon></button>
 </div>
 </div>

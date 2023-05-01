@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Boisson } from '../../models/boisson';
-import { BoissonService } from '../../services/boisson.service';
-import { Observable, Subject, takeUntil } from 'rxjs';
-import { Router } from '@angular/router';
-import { GenericPopupComponent } from 'src/app/shared/components/generic-popup/generic-popup.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { StudentFormComponent } from '../../components/student-form/student-form.component';
+import { Observable, Subject, takeUntil } from 'rxjs';
+import { GenericPopupComponent } from 'src/app/shared/components/generic-popup/generic-popup.component';
+import { Boisson } from '../../models/boisson';
+import { BoissonService } from '../../services/boisson.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-boisson-list',
@@ -27,7 +26,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
     'delete',
   ];
 
-	constructor(private boissonService: BoissonService){
+	constructor(private boissonService: BoissonService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router){
 
 	 }
 
@@ -46,22 +45,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
   }
 
   openBoissonForm(boisson?: Boisson) {
-    const dialogRef = this.dialog.open(BoissonFormComponent, {
-      height: '85%',
-      width: '60%',
-      data: {
-        isCreateForm: boisson ? false : true,
-        boisson: boisson ? boisson : undefined
-      }
-    });
-
-    dialogRef.afterClosed()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(result => {
-        if (result) {
-          this.fetchData();
-        }
-      });
+    console.log("afficher la pop up de mise à jour", boisson)
   }
 
   delete(id: number) {
@@ -97,7 +81,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
 
   }
 
-  showStudentDetails(studentId: number){
+  showBoissonDetails(studentId: number){
     this.router.navigate(['/students/'+ studentId])
   }
  }

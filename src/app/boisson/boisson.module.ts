@@ -5,6 +5,7 @@ import { BoissonRoutingModule } from './boisson-routing.module';
 import { BoissonComponent } from './boisson.component';
 import { BoissonListComponent } from './pages/boisson-list/boisson-list.component';
 import { BoissonService } from './services/boisson.service';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { BoissonService } from './services/boisson.service';
   ],
   imports: [
     CommonModule,
-    BoissonRoutingModule
+    BoissonRoutingModule,
+    SharedModule
   ],
   providers: [BoissonService],
 })
