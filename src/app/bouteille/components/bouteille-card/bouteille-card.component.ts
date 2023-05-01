@@ -15,6 +15,7 @@ export class BouteilleCardComponent implements OnInit{
       this.received.emit(true);
   }
 
+
 }
 
 

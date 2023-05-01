@@ -1,0 +1,48 @@
+.clickable {
+  cursor: pointer;
+}
+
+.mat-mdc-button>.mat-icon{
+  margin-right: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100%;
+
+  .card-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+
+    .mat-mdc-card{
+      min-width: 200px;
+
+      &:hover{
+        background-color: rgba(211, 211, 211, 0.2);
+      }
+
+      .mat-mdc-card-header{
+        justify-content: center;
+      }
+
+      .mdc-card__actions{
+        justify-content: center;
+      }
+    }
+  }
+
+  .btn-holder {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1%;
+  }
+}
+
+
+
+

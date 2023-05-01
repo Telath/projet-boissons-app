@@ -1,52 +1,28 @@
 <div class="container">
   <h2>Liste des boissons</h2>
-  <div class="flex-grow-1 p-1">
 
-<table mat-table [dataSource]="boissons$ | async" class="mat-elevation-z8">
+  <div class="card-container">
+    <div *ngFor="let boisson of boissons$ | async" class="clickable">
+      <mat-card (click)="showBoissonDetails(boisson.id)">
+        <mat-card-header>
+          <mat-card-title>{{ boisson.name }}</mat-card-title>
+          <mat-card-subtitle>{{ boisson.drinkSize }}L</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{ boisson.description }}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button (click)="openBoissonForm(boisson); $event.stopPropagation();"><mat-icon>edit</mat-icon></button>
+          <button mat-button (click)="delete(boisson.id); $event.stopPropagation();"><mat-icon>delete</mat-icon></button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 
-  <!-- name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef> Nom </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
+  <div class="btn-holder">
+    <button mat-fab color="warn" (click)="openBoissonForm()"><mat-icon>add</mat-icon></button>
+  </div>
 
-  <!-- description Column -->
-  <ng-container matColumnDef="description">
-    <th mat-header-cell *matHeaderCellDef> Description </th>
-    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
-  </ng-container>
-
-  <!-- bouteille Column -->
-  <ng-container matColumnDef="bouteille">
-    <th mat-header-cell *matHeaderCellDef> Bouteille </th>
-    <td mat-cell *matCellDef="let element"> {{element.bouteille.name}} </td>
-  </ng-container>
-
-  <!-- drinkSize Column -->
-  <ng-container matColumnDef="drinkSize">
-    <th mat-header-cell *matHeaderCellDef> Volume (L) </th>
-    <td mat-cell *matCellDef="let element"> {{element.drinkSize}} </td>
-  </ng-container>
-
-  <!-- update Column -->
-  <ng-container matColumnDef="update">
-    <th mat-header-cell *matHeaderCellDef> Modifier </th>
-    <td mat-cell *matCellDef="let element" (click)="openBoissonForm(element); $event.stopPropagation();"><mat-icon>edit</mat-icon></td>
-</ng-container>
-
-<!-- delete Column -->
-<ng-container matColumnDef="delete">
-    <th mat-header-cell *matHeaderCellDef> Supprimer </th>
-    <td mat-cell *matCellDef="let element" (click)="delete(element.id); $event.stopPropagation();"><mat-icon>delete</mat-icon></td>
-</ng-container>
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="showBoissonDetails(row.id)"></tr>
-</table>
-
-</div>
-<div class="btn-holder">
-  <button mat-fab color="warn" (click)="openBoissonForm()"><mat-icon>add</mat-icon></button>
-</div>
 </div>

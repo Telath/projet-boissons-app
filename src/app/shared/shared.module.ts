@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { GenericPopupComponent } from './components/generic-popup/generic-popup.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -40,6 +41,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDialogModule,
     MatOptionModule,
     MatNativeDateModule,
+    MatCardModule,
   ]
 })
 export class SharedModule { }
