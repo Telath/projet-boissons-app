@@ -7,13 +7,17 @@ import { BouteilleListComponent } from './pages/bouteille-list/bouteille-list.co
 import { BouteilleService } from './services/bouteille.service';
 import { SharedModule } from '../shared/shared.module';
 import { BouteilleFormComponent } from './components/bouteille-form/bouteille-form.component';
+import { BouteilleDetailsComponent } from './pages/bouteille-details/bouteille-details.component';
+import { BouteilleCardComponent } from './components/bouteille-card/bouteille-card.component';
 
 
 @NgModule({
   declarations: [
     BouteilleComponent,
     BouteilleListComponent,
-    BouteilleFormComponent
+    BouteilleFormComponent,
+    BouteilleDetailsComponent,
+    BouteilleCardComponent
   ],
   imports: [
     CommonModule,

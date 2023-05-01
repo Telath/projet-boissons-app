@@ -1,0 +1,2 @@
+<button mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon>Back</button>
+<app-boisson-card [selectedBoisson]="boisson$ | async" (received)="showRecivedValue($event)"></app-boisson-card>
