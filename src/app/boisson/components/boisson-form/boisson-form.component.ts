@@ -3,8 +3,10 @@ import { Boisson } from '../../models/boisson';
 import { Component, Inject, OnDestroy } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Bouteille } from 'src/app/bouteille/models/bouteille';
+import { BouteilleService } from 'src/app/bouteille/services/bouteille.service';
 
 export interface BoissonFormData {
   isCreateForm: boolean;
@@ -19,22 +21,28 @@ export class BoissonFormComponent implements OnDestroy{
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
 
+  bouteilles$: Observable<Bouteille[]>;
+
   boissonForm = this.fb.group({
     id: [0, [Validators.required]],
     name: ['', [Validators.required]],
     description: ['', [Validators.required]],
     bouteille: [0, [Validators.required]],
-    drinkSize: [0, [Validators.email]],
+    drinkSize: [0, [Validators.required]],
     creationDate: ['', [Validators.required]],
   });
 
   constructor(public dialogRef: MatDialogRef<BoissonFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: BoissonFormData, private fb: FormBuilder,
-    private boissonService : BoissonService, private _snackBar: MatSnackBar){
+    private boissonService : BoissonService, private _snackBar: MatSnackBar, private bouteilleService : BouteilleService){
 
       if(!data.isCreateForm){
         this.setBoissonForm(data.boisson);
       }
+  }
+
+  ngOnInit(): void{
+    this.bouteilles$ = this.bouteilleService.get();
   }
 
   ngOnDestroy(): void {

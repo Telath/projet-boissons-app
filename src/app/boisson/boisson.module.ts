@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { BoissonFormComponent } from './components/boisson-form/boisson-form.component';
 import { BoissonDetailsComponent } from './pages/boisson-details/boisson-details.component';
 import { BoissonCardComponent } from './components/boisson-card/boisson-card.component';
+import { BouteilleService } from '../bouteille/services/bouteille.service';
 
 
 @NgModule({
@@ -24,6 +25,9 @@ import { BoissonCardComponent } from './components/boisson-card/boisson-card.com
     BoissonRoutingModule,
     SharedModule
   ],
-  providers: [BoissonService],
+  providers: [
+    BoissonService,
+    BouteilleService
+  ],
 })
 export class BoissonModule { }
