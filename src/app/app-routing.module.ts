@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./boisson/boisson.module').then(m => m.BoissonModule)
   },
   {
+    path: 'bouteilles',
+    loadChildren: () => import('./bouteille/bouteille.module').then(m => m.BouteilleModule)
+  },
+  {
     path: '**',
     component: NotFoundComponent
   }

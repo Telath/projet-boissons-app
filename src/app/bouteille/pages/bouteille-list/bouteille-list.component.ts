@@ -19,7 +19,9 @@ export class BouteilleListComponent implements OnInit, OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
 	bouteilles$: Observable<Bouteille[]>;
   displayedColumns: string[] = [
-    'name'
+    'name',
+    'update',
+    'delete',
   ];
 
 	constructor(private bouteilleService: BouteilleService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router){
