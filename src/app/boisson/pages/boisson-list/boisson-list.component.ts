@@ -18,14 +18,6 @@ export class BoissonListComponent implements OnInit, OnDestroy {
 
   private destroy$: Subject<boolean> = new Subject<boolean>();
 	boissons$: Observable<Boisson[]>;
-  displayedColumns: string[] = [
-    'name',
-    'description',
-    'bouteille',
-    'drinkSize',
-    'update',
-    'delete',
-  ];
 
 	constructor(private boissonService: BoissonService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router){
 

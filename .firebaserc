@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "projet-boissons-app-cp": {
+      "hosting": {
+        "projet-boissons-app": [
+          "projet-boissons-app-cp"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "projet-boissons-app-cp"
+  }
+}

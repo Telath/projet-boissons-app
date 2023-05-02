@@ -8,8 +8,6 @@ import { BouteilleService } from './services/bouteille.service';
 import { SharedModule } from '../shared/shared.module';
 import { BouteilleFormComponent } from './components/bouteille-form/bouteille-form.component';
 import { BouteilleDetailsComponent } from './pages/bouteille-details/bouteille-details.component';
-import { BouteilleCardComponent } from './components/bouteille-card/bouteille-card.component';
-import { BoissonService } from '../boisson/services/boisson.service';
 
 
 @NgModule({
@@ -18,7 +16,6 @@ import { BoissonService } from '../boisson/services/boisson.service';
     BouteilleListComponent,
     BouteilleFormComponent,
     BouteilleDetailsComponent,
-    BouteilleCardComponent
   ],
   imports: [
     CommonModule,

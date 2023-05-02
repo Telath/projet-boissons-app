@@ -1,5 +1,6 @@
-<button mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon>Back</button>
-<!-- <app-bouteille-card [selectedBouteille]="bouteille$ | async" (received)="showRecivedValue($event)"></app-bouteille-card> -->
+<button class="back-btn" mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon>Back</button>
 
-<p>Nom : {{ (bouteille$ |async)?.name}}</p>
-<p>Id : {{ (bouteille$ |async)?.id}}</p>
+<div class="center">
+  <p>Nom : {{ (bouteille$ |async)?.name}}</p>
+  <p>Id : {{ (bouteille$ |async)?.id}}</p>
+</div>

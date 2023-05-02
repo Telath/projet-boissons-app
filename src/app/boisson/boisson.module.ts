@@ -8,7 +8,6 @@ import { BoissonService } from './services/boisson.service';
 import { SharedModule } from '../shared/shared.module';
 import { BoissonFormComponent } from './components/boisson-form/boisson-form.component';
 import { BoissonDetailsComponent } from './pages/boisson-details/boisson-details.component';
-import { BoissonCardComponent } from './components/boisson-card/boisson-card.component';
 import { BouteilleService } from '../bouteille/services/bouteille.service';
 
 
@@ -18,7 +17,6 @@ import { BouteilleService } from '../bouteille/services/bouteille.service';
     BoissonListComponent,
     BoissonFormComponent,
     BoissonDetailsComponent,
-    BoissonCardComponent
   ],
   imports: [
     CommonModule,

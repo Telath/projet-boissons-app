@@ -17,9 +17,6 @@ export class BoissonDetailsComponent implements OnInit{
   boisson$: Observable<Boisson>;
 
   constructor(private route: ActivatedRoute, private boissonService: BoissonService, private location: Location){
-    // route.params.subscribe(params =>{
-    //   this.boissonId = params['id'];
-    // })
     this.boissonId = +this.route.snapshot.paramMap.get('id') ;
   }
 

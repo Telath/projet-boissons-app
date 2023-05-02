@@ -1,2 +1,17 @@
-<button mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon>Back</button>
-<app-boisson-card [selectedBoisson]="boisson$ | async" (received)="showRecivedValue($event)"></app-boisson-card>
+<button class="back-btn" mat-raised-button (click)="goBack()"><mat-icon>arrow_back</mat-icon>Back</button>
+
+<div class="center">
+  <p>Nom : {{ (boisson$ |async)?.name}}</p>
+  <p>Id : {{ (boisson$ |async)?.id}}</p>
+  <p>Description : {{ (boisson$ |async)?.description}}</p>
+  <p>Volume : {{ (boisson$ |async)?.drinkSize}}L</p>
+  <p>Date de création : {{ (boisson$ |async)?.creationDate}}</p>
+  <p>Bouteille : {{ (boisson$ |async)?.bouteille }}</p>
+</div>
+
+
+
+
+
+
+

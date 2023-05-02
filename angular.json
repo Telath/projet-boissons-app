@@ -105,6 +105,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "projet-boissons-app:build:production",
+            "firebaseProject": "projet-boissons-app-cp",
+            "firebaseHostingSite": "projet-boissons-app-cp"
+          }
         }
       }
     }
