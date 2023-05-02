@@ -7,6 +7,7 @@ import { Bouteille } from '../../models/bouteille';
 import { BouteilleService } from '../../services/bouteille.service';
 import { Router } from '@angular/router';
 import { BouteilleFormComponent } from '../../components/bouteille-form/bouteille-form.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-bouteille-list',
@@ -19,7 +20,7 @@ export class BouteilleListComponent implements OnInit, OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
 	bouteilles$: Observable<Bouteille[]>;
 
-	constructor(private bouteilleService: BouteilleService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router){
+	constructor(private bouteilleService: BouteilleService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router, private auth: AngularFireAuth){
 
 	 }
 
@@ -38,6 +39,10 @@ export class BouteilleListComponent implements OnInit, OnDestroy {
   }
 
   openBouteilleForm(bouteille?: Bouteille) {
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
     const dialogRef = this.dialog.open(BouteilleFormComponent, {
       height: '85%',
       width: '60%',
@@ -54,9 +59,18 @@ export class BouteilleListComponent implements OnInit, OnDestroy {
           this.fetchData();
         }
       });
+
+    }
+  });
   }
 
   delete(id: number) {
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
+
+
     const ref = this.dialog.open(GenericPopupComponent, {
       data: {
         title: 'Confirmation de suppression',
@@ -86,6 +100,9 @@ export class BouteilleListComponent implements OnInit, OnDestroy {
             });
         }
       });
+
+        }
+    });
 
   }
 
