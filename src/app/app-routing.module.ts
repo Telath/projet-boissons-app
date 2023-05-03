@@ -11,7 +11,7 @@ import { AuthGuard } from './shared/guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'boissons',
+    redirectTo: 'sign-in',
     pathMatch: 'full'
   },
   {

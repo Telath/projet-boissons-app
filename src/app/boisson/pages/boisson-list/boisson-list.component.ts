@@ -7,6 +7,7 @@ import { Boisson } from '../../models/boisson';
 import { BoissonService } from '../../services/boisson.service';
 import { Router } from '@angular/router';
 import { BoissonFormComponent } from '../../components/boisson-form/boisson-form.component';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-boisson-list',
@@ -19,7 +20,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
   private destroy$: Subject<boolean> = new Subject<boolean>();
 	boissons$: Observable<Boisson[]>;
 
-	constructor(private boissonService: BoissonService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router){
+	constructor(private boissonService: BoissonService, private dialog: MatDialog, private _snackBar: MatSnackBar, private router: Router, private auth: AngularFireAuth){
 
 	 }
 
@@ -38,25 +39,37 @@ export class BoissonListComponent implements OnInit, OnDestroy {
   }
 
   openBoissonForm(boisson?: Boisson) {
-    const dialogRef = this.dialog.open(BoissonFormComponent, {
-      height: '85%',
-      width: '60%',
-      data: {
-        isCreateForm: boisson ? false : true,
-        boisson: boisson ? boisson : undefined
-      }
-    });
-
-    dialogRef.afterClosed()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(result => {
-        if (result) {
-          this.fetchData();
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
+      const dialogRef = this.dialog.open(BoissonFormComponent, {
+        height: '85%',
+        width: '60%',
+        data: {
+          isCreateForm: boisson ? false : true,
+          boisson: boisson ? boisson : undefined
         }
       });
+
+      dialogRef.afterClosed()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(result => {
+          if (result) {
+            this.fetchData();
+          }
+        });
+      }
+    });
   }
 
   delete(id: number) {
+
+    this.auth.authState.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['/sign-in']);
+      }else{
+
     const ref = this.dialog.open(GenericPopupComponent, {
       data: {
         title: 'Confirmation de suppression',
@@ -69,6 +82,7 @@ export class BoissonListComponent implements OnInit, OnDestroy {
         yesButtonLabel: 'Oui',
         noButtonLabel: 'Non',
       },
+
     })
 
     ref.afterClosed()
@@ -86,7 +100,8 @@ export class BoissonListComponent implements OnInit, OnDestroy {
             });
         }
       });
-
+}
+    });
   }
 
   showBoissonDetails(boissonId: number){

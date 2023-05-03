@@ -14,11 +14,6 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { GenericPopupComponent } from './components/generic-popup/generic-popup.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
-
-
-
-
-
 @NgModule({
   declarations: [GenericPopupComponent],
   imports: [
