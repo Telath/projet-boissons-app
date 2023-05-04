@@ -11,3 +11,14 @@
 }
 
 .mat-sidenav-content{ display: flex; flex-direction: column; }
+
+.collab{
+  position: absolute;
+  bottom: 1rem;
+  padding: 0 1rem;
+  font-size: .75rem;
+  text-align: center;
+  p{
+    margin-bottom: .25rem;
+  }
+}
